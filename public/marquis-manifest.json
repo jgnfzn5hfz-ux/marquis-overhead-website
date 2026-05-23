@@ -1,0 +1,24 @@
+{
+  "name": "Marquis Overhead",
+  "short_name": "Marquis",
+  "description": "Overhead Doors · Repairs · Dock Equipment — Alberta",
+  "start_url": "/marquis",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0D1F35",
+  "theme_color": "#0D1F35",
+  "icons": [
+    {
+      "src": "/marquis/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/marquis/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300" width="380" height="300">
+  <title>Marquis Overhead — Stacked Logo (Primary Dark)</title>
+  <desc>Primary logo — use on dark navy backgrounds, signage, workwear, vehicles</desc>
+  <rect width="380" height="300" fill="#0D1F35" rx="12"/>
+  <!-- Ghost chevron -->
+  <polyline points="130,88 195,158 260,88"
+    fill="none" stroke="#F07A20" stroke-width="17"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.30"/>
+  <!-- Solid chevron (downward — centre valley of M) -->
+  <polyline points="130,110 195,180 260,110"
+    fill="none" stroke="#F07A20" stroke-width="17"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left stick -->
+  <line x1="130" y1="110" x2="130" y2="222"
+    stroke="#FFFFFF" stroke-width="17" stroke-linecap="round"/>
+  <!-- Right stick -->
+  <line x1="260" y1="110" x2="260" y2="222"
+    stroke="#FFFFFF" stroke-width="17" stroke-linecap="round"/>
+  <!-- MARQUIS -->
+  <text x="190" y="262"
+    font-family="'Arial Black','Arial Bold',Impact,sans-serif"
+    font-size="44" font-weight="900" fill="#FFFFFF"
+    text-anchor="middle" letter-spacing="4">MARQUIS</text>
+  <!-- OVERHEAD -->
+  <text x="190" y="291"
+    font-family="Arial,Helvetica,sans-serif"
+    font-size="13" font-weight="700" fill="#F07A20"
+    text-anchor="middle" letter-spacing="9">OVERHEAD</text>
+</svg>

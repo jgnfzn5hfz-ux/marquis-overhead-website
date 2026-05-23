@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <title>Marquis Overhead — Horizontal Logo (Primary Dark)</title>
+  <desc>Horizontal — use for truck lettering, email headers, wide banners, site signage</desc>
+  <rect width="600" height="160" fill="#0D1F35" rx="12"/>
+  <!-- Ghost chevron -->
+  <polyline points="36,30 90,78 144,30"
+    fill="none" stroke="#F07A20" stroke-width="13"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.30"/>
+  <!-- Solid chevron -->
+  <polyline points="36,46 90,94 144,46"
+    fill="none" stroke="#F07A20" stroke-width="13"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left stick -->
+  <line x1="36" y1="46" x2="36" y2="132"
+    stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/>
+  <!-- Right stick -->
+  <line x1="144" y1="46" x2="144" y2="132"
+    stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/>
+  <!-- Divider -->
+  <line x1="170" y1="18" x2="170" y2="142"
+    stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <!-- MARQUIS -->
+  <text x="188" y="96"
+    font-family="'Arial Black','Arial Bold',Impact,sans-serif"
+    font-size="48" font-weight="900" fill="#FFFFFF"
+    letter-spacing="4">MARQUIS</text>
+  <!-- OVERHEAD -->
+  <text x="190" y="124"
+    font-family="Arial,Helvetica,sans-serif"
+    font-size="13" font-weight="700" fill="#F07A20"
+    letter-spacing="9">OVERHEAD</text>
+</svg>
