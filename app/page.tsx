@@ -1,65 +1,345 @@
 import Image from "next/image";
+import ContactForm from "@/components/ContactForm";
 
-export default function Home() {
+const NAVY = "#0D1F35";
+const ORANGE = "#F07A20";
+
+const SERVICES = [
+  {
+    title: "Overhead Door Installation",
+    desc: "Sectional, rolling steel, and specialty doors for commercial and industrial facilities. New construction or replacement — we handle it all.",
+  },
+  {
+    title: "Repairs & Service",
+    desc: "Springs, cables, tracks, panels, and rollers. Fast response to keep your operation running with minimal downtime.",
+  },
+  {
+    title: "Dock Equipment",
+    desc: "Dock levelers, seals, bumpers, and vehicle restraints. Supply and full installation by certified technicians.",
+  },
+  {
+    title: "Operators & Controls",
+    desc: "Commercial jackshaft and trolley operators, access control, myQ smart connectivity, and safety sensor installation.",
+  },
+];
+
+const TRUST_POINTS = [
+  {
+    icon: "⚡",
+    title: "Fast Response",
+    desc: "We know downtime costs money. We prioritize rapid dispatch for service calls across Alberta.",
+  },
+  {
+    icon: "🏆",
+    title: "Commercial Specialists",
+    desc: "Focused on commercial and industrial — we know the equipment, the loads, and the standards.",
+  },
+  {
+    icon: "🤝",
+    title: "Local & Accountable",
+    desc: "Owner-operated. When you call, you get Aaron — the person doing the work, not a call center.",
+  },
+];
+
+const TUNE_UP_INCLUDES = [
+  "Full door inspection",
+  "Spring tension check",
+  "Lubricate all moving parts",
+  "Safety sensor test & align",
+  "Balance & travel test",
+  "Hardware tighten & check",
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      {/* ─── STICKY HEADER ─── */}
+      <header
+        className="sticky top-0 z-50 border-b border-white/10"
+        style={{ background: NAVY }}
+      >
+        <div className="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
+          {/* Logo */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="28" height="35" aria-hidden="true">
+              <polyline points="14,18 40,46 66,18" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" opacity="0.30"/>
+              <polyline points="14,30 40,58 66,30" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="14" y1="30" x2="14" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
+              <line x1="66" y1="30" x2="66" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
+            </svg>
+            <div>
+              <div className="font-black text-white text-lg leading-none tracking-[3px]">MARQUIS</div>
+              <div className="font-bold text-[7px] tracking-[5px] uppercase" style={{ color: ORANGE }}>OVERHEAD</div>
+            </div>
+          </div>
+
+          {/* Nav links — hidden on mobile */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-blue-200">
+            <a href="#services" className="hover:text-white transition-colors">Services</a>
+            <a href="#why-us" className="hover:text-white transition-colors">About</a>
+            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          </nav>
+
+          {/* CTA */}
+          <a
+            href="tel:+14036179797"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90"
+            style={{ background: ORANGE }}
+          >
+            <span>📞</span>
+            <span>(403) 617-9797</span>
+          </a>
+        </div>
+        <div className="h-[3px]" style={{ background: ORANGE }} />
+      </header>
+
+      {/* ─── HERO ─── */}
+      <section className="relative min-h-[92vh] flex items-center">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/hero-home.jpg"
+          alt="Modern home with overhead garage doors"
+          fill
+          className="object-cover object-center"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        {/* Overlay */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(13,31,53,0.82) 0%, rgba(13,31,53,0.60) 60%, rgba(13,31,53,0.30) 100%)" }} />
+
+        <div className="relative max-w-6xl mx-auto px-6 py-24">
+          <p className="font-bold text-[11px] tracking-[5px] uppercase mb-4" style={{ color: ORANGE }}>
+            Alberta — Commercial &amp; Industrial
           </p>
+          <h1 className="font-black text-white text-5xl sm:text-6xl leading-[1.05] mb-5 tracking-tight max-w-2xl">
+            Overhead Doors<br />&amp; Dock Equipment<br />
+            <span style={{ color: ORANGE }}>Done Right.</span>
+          </h1>
+          <p className="text-blue-200 text-xl font-light mb-10 max-w-lg leading-relaxed">
+            Installation, repairs, and service for commercial and industrial facilities across Alberta.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="tel:+14036179797"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
+              style={{ background: ORANGE }}
+            >
+              📞 Call (403) 617-9797
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold text-white border-2 border-white/30 hover:border-white/60 transition-colors"
+            >
+              Get a Free Quote
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ─── SERVICES ─── */}
+      <section id="services" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>What We Do</p>
+          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Our Services</h2>
+          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">From new installations to emergency repairs — we cover the full scope of commercial overhead door and dock equipment work.</p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SERVICES.map((s) => (
+              <div key={s.title} className="p-6 rounded-xl border-2 border-gray-100 hover:border-orange-300 hover:shadow-lg transition-all group">
+                <div className="w-3 h-3 rounded-full mb-4 transition-transform group-hover:scale-125" style={{ background: ORANGE }} />
+                <h3 className="font-black text-base mb-2" style={{ color: NAVY }}>{s.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ─── PHOTO SHOWCASE ─── */}
+      <section className="py-2 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
+              <Image
+                src="/images/residential-doors.jpg"
+                alt="Residential overhead door installation"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6">
+                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>Residential</span>
+                <span className="block font-black text-xl text-white">Sectional Doors</span>
+              </div>
+            </div>
+            <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
+              <Image
+                src="/images/commercial-doors.jpg"
+                alt="Commercial overhead door installation"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6">
+                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>Commercial</span>
+                <span className="block font-black text-xl text-white">Industrial Doors</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY MARQUIS ─── */}
+      <section id="why-us" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>Why Choose Us</p>
+          <h2 className="text-4xl font-black text-center mb-12" style={{ color: NAVY }}>The Marquis Difference</h2>
+
+          <div className="grid sm:grid-cols-3 gap-8 mb-16">
+            {TRUST_POINTS.map((t) => (
+              <div key={t.title} className="text-center">
+                <div className="text-4xl mb-4">{t.icon}</div>
+                <h3 className="font-black text-lg mb-2" style={{ color: NAVY }}>{t.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Door construction callout */}
+          <div className="rounded-2xl overflow-hidden grid sm:grid-cols-2 shadow-sm border border-gray-100">
+            <div className="relative h-72 sm:h-auto">
+              <Image
+                src="/images/door-construction.jpg"
+                alt="Insulated door panel cross-section"
+                fill
+                className="object-contain bg-white p-4"
+              />
+            </div>
+            <div className="p-8 flex flex-col justify-center" style={{ background: NAVY }}>
+              <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>Quality You Can See</p>
+              <h3 className="font-black text-2xl text-white mb-4">Insulated Steel Construction</h3>
+              <p className="text-blue-200 text-sm leading-relaxed mb-5">
+                We install polyurethane foam-injected steel sectional doors — the same commercial-grade product used in warehouses, fire halls, and industrial facilities across Alberta.
+              </p>
+              <ul className="space-y-2">
+                {["High R-value insulation", "Heavy-duty galvanized tracks", "Commercial-grade rollers & hinges", "Weatherseal on all four sides"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-blue-100">
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PROMO ─── */}
+      <section className="py-16" style={{ background: NAVY }}>
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>
+            Limited-Time Offer · May &amp; June 2026
+          </p>
+          <h2 className="font-black text-4xl text-white mb-2">Spring Tune-Up Special</h2>
+          <p className="text-blue-300 text-sm mb-8">
+            We recently completed a job in your neighbourhood — exclusive rate for nearby homeowners.
+          </p>
+
+          <div className="inline-flex items-baseline gap-3 mb-2">
+            <span className="font-black text-6xl" style={{ color: ORANGE }}>$89</span>
+            <span className="text-blue-300 text-lg line-through">$149</span>
+          </div>
+          <p className="text-blue-400 text-xs mb-8">Save $60 · Book before June 30, 2026</p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-8 text-left">
+            {TUNE_UP_INCLUDES.map((item) => (
+              <div key={item} className="flex items-start gap-2">
+                <div className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
+                <span className="text-xs text-blue-200 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="tel:+14036179797"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
+            style={{ background: ORANGE }}
+          >
+            📞 Book Now — (403) 617-9797
+          </a>
+          <p className="text-blue-500 text-xs mt-4">Mention this offer when you call. One per household.</p>
+        </div>
+      </section>
+
+      {/* ─── CONTACT ─── */}
+      <section id="contact" className="py-20 bg-white">
+        <div className="max-w-2xl mx-auto px-6">
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>Get In Touch</p>
+          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Request a Free Quote</h2>
+          <p className="text-center text-gray-500 mb-10">
+            Tell us what you need — we&apos;ll get back to you fast. For urgent repairs, call or text{" "}
+            <a href="tel:+14036179797" className="font-bold" style={{ color: ORANGE }}>(403) 617-9797</a> directly.
+          </p>
+          <ContactForm />
+        </div>
+      </section>
+
+      {/* ─── FOOTER ─── */}
+      <footer>
+        <div className="py-12" style={{ background: NAVY }}>
+          <div className="max-w-6xl mx-auto px-6 grid sm:grid-cols-3 gap-8">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="28" height="35" aria-hidden="true">
+                  <polyline points="14,18 40,46 66,18" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" opacity="0.30"/>
+                  <polyline points="14,30 40,58 66,30" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
+                  <line x1="14" y1="30" x2="14" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
+                  <line x1="66" y1="30" x2="66" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
+                </svg>
+                <div>
+                  <div className="font-black text-white text-lg leading-none tracking-[3px]">MARQUIS</div>
+                  <div className="font-bold text-[7px] tracking-[5px] uppercase" style={{ color: ORANGE }}>OVERHEAD</div>
+                </div>
+              </div>
+              <p className="text-blue-300 text-sm leading-relaxed">
+                Commercial &amp; industrial overhead door installation, repairs, and dock equipment — Alberta.
+              </p>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="font-black text-white text-sm tracking-wider uppercase mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-blue-300">
+                <li>Overhead Door Installation</li>
+                <li>Repairs &amp; Service</li>
+                <li>Dock Equipment</li>
+                <li>Operators &amp; Controls</li>
+                <li>Spring Replacement</li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-black text-white text-sm tracking-wider uppercase mb-4">Contact</h4>
+              <ul className="space-y-2 text-sm text-blue-300">
+                <li><a href="tel:+14036179797" className="hover:text-white transition-colors">📞 (403) 617-9797</a></li>
+                <li><a href="mailto:contact@marquisoverhead.com" className="hover:text-white transition-colors">✉ contact@marquisoverhead.com</a></li>
+                <li className="pt-1 text-blue-400">Alberta, Canada</li>
+                <li className="text-blue-400">Commercial &amp; Industrial</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div style={{ background: ORANGE }} className="px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-1 max-w-full">
+          <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: NAVY }}>
+            Overhead Doors · Repairs · Installations
+          </span>
+          <span className="text-[11px] font-bold" style={{ color: NAVY }}>
+            © {new Date().getFullYear()} Marquis Overhead
+          </span>
+        </div>
+      </footer>
+    </>
   );
 }
