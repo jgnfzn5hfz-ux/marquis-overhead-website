@@ -2,6 +2,8 @@
 
 import { Resend } from "resend";
 
+const SITECOMPASS_URL = process.env.NEXT_PUBLIC_SITECOMPASS_URL ?? "http://localhost:3000";
+
 export type ContactState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -20,9 +22,33 @@ export async function submitContact(
     return { status: "error", message: "Please fill in your name, phone, and message." };
   }
 
+  // Post to SiteCompass as a web booking (serviceType: "inquiry")
+  try {
+    await fetch(`${SITECOMPASS_URL}/api/public/booking`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        company: "",
+        address: "",
+        workType: "residential",
+        serviceType: "inquiry",
+        preferredSlots: "[]",
+        notes: message,
+        _trap: "",
+        _elapsed: 9999,
+      }),
+    });
+  } catch (err) {
+    console.error("SiteCompass contact sync error:", err);
+    // Non-fatal — continue to email
+  }
+
+  // Send email notification via Resend
   if (!process.env.RESEND_API_KEY) {
-    // During development without an API key — log and succeed gracefully
-    console.log("Contact form submission (no API key configured):", { name, phone, email, message });
+    console.log("Contact form submission (no Resend key):", { name, phone, email, message });
     return { status: "success" };
   }
 
@@ -32,13 +58,16 @@ export async function submitContact(
       from: "Website <noreply@marquisoverhead.com>",
       to: "contact@marquisoverhead.com",
       replyTo: email || undefined,
-      subject: `Website inquiry from ${name}`,
+      subject: `New Website Inquiry — ${name}`,
       text: [
         `Name:    ${name}`,
         `Phone:   ${phone}`,
         `Email:   ${email || "not provided"}`,
         "",
         message,
+        "",
+        "─────────────────────────",
+        "This inquiry has been added to your SiteCompass dashboard.",
       ].join("\n"),
     });
     return { status: "success" };

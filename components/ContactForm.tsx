@@ -16,7 +16,7 @@ export default function ContactForm() {
       <div className="rounded-xl border-2 p-10 text-center" style={{ borderColor: ORANGE }}>
         <div className="text-4xl mb-4">✅</div>
         <h3 className="text-2xl font-black mb-2" style={{ color: NAVY }}>Message Received!</h3>
-        <p className="text-gray-600">Thanks — we&apos;ll get back to you shortly. For urgent requests call <a href="tel:+14036179797" className="font-bold" style={{ color: ORANGE }}>(403) 617-9797</a>.</p>
+        <p className="text-gray-600">Thanks — we&apos;ll get back to you within one business day.</p>
       </div>
     );
   }
@@ -89,8 +89,7 @@ export default function ContactForm() {
       </button>
 
       <p className="text-center text-xs text-gray-400">
-        Or call / text us directly at{" "}
-        <a href="tel:+14036179797" className="font-bold text-gray-600">(403) 617-9797</a>
+        We&apos;ll get back to you within one business day.
       </p>
     </form>
   );

@@ -6,38 +6,38 @@ const ORANGE = "#F07A20";
 
 const SERVICES = [
   {
-    title: "Overhead Door Installation",
-    desc: "Sectional, rolling steel, and specialty doors for commercial and industrial facilities. New construction or replacement — we handle it all.",
+    title: "New Door Installation",
+    desc: "Steel, insulated sectional, and custom garage doors for homes and acreages. Same-day quotes, professional installation.",
   },
   {
-    title: "Repairs & Service",
-    desc: "Springs, cables, tracks, panels, and rollers. Fast response to keep your operation running with minimal downtime.",
+    title: "Repairs & Spring Service",
+    desc: "Broken spring? Snapped cable? Stuck door? We carry common parts on the truck and get you moving again fast.",
   },
   {
-    title: "Dock Equipment",
-    desc: "Dock levelers, seals, bumpers, and vehicle restraints. Supply and full installation by certified technicians.",
+    title: "Operators & Smart Home",
+    desc: "LiftMaster and Chamberlain operators, myQ smart connectivity, battery backup, and full safety sensor setup.",
   },
   {
-    title: "Operators & Controls",
-    desc: "Commercial jackshaft and trolley operators, access control, myQ smart connectivity, and safety sensor installation.",
+    title: "Commercial & Dock",
+    desc: "Rolling steel doors, dock levelers, seals, and vehicle restraints for warehouses and industrial facilities.",
   },
 ];
 
 const TRUST_POINTS = [
   {
     icon: "⚡",
-    title: "Fast Response",
-    desc: "We know downtime costs money. We prioritize rapid dispatch for service calls across Alberta.",
+    title: "Same-Day Service",
+    desc: "Broken spring or stuck door doesn't wait — neither do we. Fast dispatch across Calgary and the surrounding area.",
   },
   {
-    icon: "🏆",
-    title: "Commercial Specialists",
-    desc: "Focused on commercial and industrial — we know the equipment, the loads, and the standards.",
+    icon: "🏠",
+    title: "Residential Specialists",
+    desc: "From single-car garages to acreages and new builds — we know residential doors inside and out.",
   },
   {
     icon: "🤝",
     title: "Local & Accountable",
-    desc: "Owner-operated. When you call, you get Aaron — the person doing the work, not a call center.",
+    desc: "Owner-operated. When you reach out, you get Aaron — the person showing up at your door, not a call center.",
   },
 ];
 
@@ -107,28 +107,22 @@ export default function HomePage() {
 
         <div className="relative max-w-6xl mx-auto px-6 py-24">
           <p className="font-bold text-[11px] tracking-[5px] uppercase mb-4" style={{ color: ORANGE }}>
-            Alberta — Commercial &amp; Industrial
+            Calgary &amp; Area — Residential &amp; Commercial
           </p>
           <h1 className="font-black text-white text-5xl sm:text-6xl leading-[1.05] mb-5 tracking-tight max-w-2xl">
-            Overhead Doors<br />&amp; Dock Equipment<br />
+            Garage Doors &amp;<br />Overhead Doors<br />
             <span style={{ color: ORANGE }}>Done Right.</span>
           </h1>
           <p className="text-blue-200 text-xl font-light mb-10 max-w-lg leading-relaxed">
-            Installation, repairs, and service for commercial and industrial facilities across Alberta.
+            New installations, spring repairs, and same-day service for homeowners in Calgary and area.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="tel:+14036179797"
+              href="/booking"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
               style={{ background: ORANGE }}
             >
-              📞 Call (403) 617-9797
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold text-white border-2 border-white/30 hover:border-white/60 transition-colors"
-            >
-              Get a Free Quote
+              📅 Book an Appointment
             </a>
           </div>
         </div>
@@ -139,7 +133,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>What We Do</p>
           <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Our Services</h2>
-          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">From new installations to emergency repairs — we cover the full scope of commercial overhead door and dock equipment work.</p>
+          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">From broken springs to brand-new doors — fast, reliable service for homeowners and businesses across Alberta.</p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICES.map((s) => (
@@ -217,10 +211,10 @@ export default function HomePage() {
               <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>Quality You Can See</p>
               <h3 className="font-black text-2xl text-white mb-4">Insulated Steel Construction</h3>
               <p className="text-blue-200 text-sm leading-relaxed mb-5">
-                We install polyurethane foam-injected steel sectional doors — the same commercial-grade product used in warehouses, fire halls, and industrial facilities across Alberta.
+                We install polyurethane foam-injected steel sectional doors — better insulation, quieter operation, and built to last Alberta winters. The same product used in fire halls and warehouses, now in your garage.
               </p>
               <ul className="space-y-2">
-                {["High R-value insulation", "Heavy-duty galvanized tracks", "Commercial-grade rollers & hinges", "Weatherseal on all four sides"].map((item) => (
+                {["High R-value insulation", "Quieter, smoother operation", "Heavy-duty galvanized tracks", "Weatherseal on all four sides"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-blue-100">
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
                     {item}
@@ -259,13 +253,13 @@ export default function HomePage() {
           </div>
 
           <a
-            href="tel:+14036179797"
+            href="/booking?deal=tune-up"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
             style={{ background: ORANGE }}
           >
-            📞 Book Now — (403) 617-9797
+            📅 Book Online — Claim This Deal
           </a>
-          <p className="text-blue-500 text-xs mt-4">Mention this offer when you call. One per household.</p>
+          <p className="text-blue-500 text-xs mt-4">Select &ldquo;Repair&rdquo; and mention the tune-up special in your notes. One per household.</p>
         </div>
       </section>
 
@@ -275,8 +269,7 @@ export default function HomePage() {
           <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>Get In Touch</p>
           <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Request a Free Quote</h2>
           <p className="text-center text-gray-500 mb-10">
-            Tell us what you need — we&apos;ll get back to you fast. For urgent repairs, call or text{" "}
-            <a href="tel:+14036179797" className="font-bold" style={{ color: ORANGE }}>(403) 617-9797</a> directly.
+            Tell us what you need — we&apos;ll get back to you within one business day. For same-day service, book online and we&apos;ll reach out to confirm.
           </p>
           <ContactForm />
         </div>
@@ -301,7 +294,7 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="text-blue-300 text-sm leading-relaxed">
-                Commercial &amp; industrial overhead door installation, repairs, and dock equipment — Alberta.
+                Garage door installation, repairs, and service for homeowners and businesses across Alberta.
               </p>
             </div>
 
@@ -323,8 +316,8 @@ export default function HomePage() {
               <ul className="space-y-2 text-sm text-blue-300">
                 <li><a href="tel:+14036179797" className="hover:text-white transition-colors">📞 (403) 617-9797</a></li>
                 <li><a href="mailto:contact@marquisoverhead.com" className="hover:text-white transition-colors">✉ contact@marquisoverhead.com</a></li>
-                <li className="pt-1 text-blue-400">Alberta, Canada</li>
-                <li className="text-blue-400">Commercial &amp; Industrial</li>
+                <li className="pt-1 text-blue-400">Calgary &amp; Area, Alberta</li>
+                <li className="text-blue-400">Residential &amp; Commercial</li>
               </ul>
             </div>
           </div>
