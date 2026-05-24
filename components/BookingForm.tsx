@@ -88,7 +88,32 @@ export default function BookingForm() {
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const formRenderTime = useRef(Date.now());
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  // Load Cloudflare Turnstile widget
+  useEffect(() => {
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!siteKey || !turnstileRef.current) return;
+
+    const existing = document.querySelector('script[src*="turnstile"]');
+    const initWidget = () => {
+      if (turnstileRef.current && (window as any).turnstile) {
+        (window as any).turnstile.render(turnstileRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => setTurnstileToken(token),
+          "expired-callback": () => setTurnstileToken(""),
+        });
+      }
+    };
+    if (existing) { initWidget(); return; }
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.onload = initWidget;
+    document.head.appendChild(script);
+  }, [configLoaded]);
 
   useEffect(() => {
     fetch(`${SITECOMPASS_URL}/api/public/booking-config`)
@@ -133,6 +158,7 @@ export default function BookingForm() {
           notes: notes.trim(),
           _trap: "",
           _elapsed: elapsed,
+          _turnstileToken: turnstileToken,
         }),
       });
       const data = await res.json();
@@ -408,6 +434,11 @@ export default function BookingForm() {
         <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
           {errorMsg}
         </div>
+      )}
+
+      {/* Cloudflare Turnstile — renders only when NEXT_PUBLIC_TURNSTILE_SITE_KEY is set */}
+      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+        <div ref={turnstileRef} className="flex justify-center" />
       )}
 
       <button

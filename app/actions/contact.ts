@@ -9,6 +9,22 @@ export type ContactState = {
   message?: string;
 };
 
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // Skip in dev / before key is configured
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token }),
+    });
+    const data = await res.json() as { success: boolean };
+    return data.success === true;
+  } catch {
+    return true; // Network error — fail open so real users aren't blocked
+  }
+}
+
 export async function submitContact(
   _prev: ContactState,
   formData: FormData
@@ -17,9 +33,16 @@ export async function submitContact(
   const phone = formData.get("phone")?.toString().trim() ?? "";
   const email = formData.get("email")?.toString().trim() ?? "";
   const message = formData.get("message")?.toString().trim() ?? "";
+  const turnstileToken = formData.get("cf-turnstile-response")?.toString() ?? "";
 
   if (!name || !phone || !message) {
     return { status: "error", message: "Please fill in your name, phone, and message." };
+  }
+
+  // Verify CAPTCHA
+  const captchaPassed = await verifyTurnstile(turnstileToken);
+  if (!captchaPassed) {
+    return { status: "error", message: "CAPTCHA verification failed. Please refresh and try again." };
   }
 
   // Post to SiteCompass as a web booking (serviceType: "inquiry")
@@ -39,6 +62,7 @@ export async function submitContact(
         notes: message,
         _trap: "",
         _elapsed: 9999,
+        _turnstileToken: turnstileToken,
       }),
     });
   } catch (err) {

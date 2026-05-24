@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 
 const NAVY = "#0D1F35";
@@ -10,6 +10,16 @@ const initial: ContactState = { status: "idle" };
 
 export default function ContactForm() {
   const [state, action, pending] = useActionState(submitContact, initial);
+
+  // Load Cloudflare Turnstile script (implicit mode — auto-renders widget in .cf-turnstile divs)
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return;
+    if (document.querySelector('script[src*="turnstile"]')) return;
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    document.head.appendChild(script);
+  }, []);
 
   if (state.status === "success") {
     return (
@@ -77,6 +87,14 @@ export default function ContactForm() {
 
       {state.status === "error" && (
         <p className="text-red-600 text-sm font-medium">{state.message}</p>
+      )}
+
+      {/* Cloudflare Turnstile — implicit mode, auto-injects cf-turnstile-response into form */}
+      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+        <div
+          className="cf-turnstile flex justify-center"
+          data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        />
       )}
 
       <button
