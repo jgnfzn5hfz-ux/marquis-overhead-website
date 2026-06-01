@@ -36,8 +36,8 @@ const TRUST_POINTS = [
   },
   {
     icon: "🤝",
-    title: "Local & Accountable",
-    desc: "Owner-operated. When you reach out, you get Aaron — the person showing up at your door, not a call center.",
+    title: "You're Always in the Loop",
+    desc: "We keep you informed from first call to final install. No surprises on timing, pricing, or scope — just clear communication and a job done right.",
   },
 ];
 
