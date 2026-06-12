@@ -23,6 +23,39 @@ const SERVICES = [
   },
 ];
 
+const MAINTENANCE_FEATURES = [
+  {
+    icon: "📋",
+    title: "Door-by-Door Inspection",
+    desc: "Every overhead door, dock leveler, and seal at your facility is checked and logged at each visit.",
+  },
+  {
+    icon: "📸",
+    title: "Photo Documentation",
+    desc: "Visual record of wear, damage, and completed repairs — attached to every report.",
+  },
+  {
+    icon: "⚠️",
+    title: "Priority Findings",
+    desc: "Issues flagged by urgency, with clear recommendations and quotes for any repairs needed.",
+  },
+  {
+    icon: "✅",
+    title: "Safety & Compliance Checks",
+    desc: "Sensor tests, restraint checks, and operator inspections — documented for your records.",
+  },
+  {
+    icon: "🗂️",
+    title: "Digital Maintenance History",
+    desc: "Every report archived and accessible, so you can track the condition of each door over time.",
+  },
+  {
+    icon: "📅",
+    title: "Scheduled Visit Summary",
+    desc: "A clear summary of what was done at each visit and when the next one is due.",
+  },
+];
+
 const TRUST_POINTS = [
   {
     icon: "⚡",
@@ -39,15 +72,6 @@ const TRUST_POINTS = [
     title: "You're Always in the Loop",
     desc: "We keep you informed from first call to final install. No surprises on timing, pricing, or scope — just clear communication and a job done right.",
   },
-];
-
-const TUNE_UP_INCLUDES = [
-  "Full door inspection",
-  "Spring tension check",
-  "Lubricate all moving parts",
-  "Safety sensor test & align",
-  "Balance & travel test",
-  "Hardware tighten & check",
 ];
 
 export default function HomePage() {
@@ -76,6 +100,7 @@ export default function HomePage() {
           {/* Nav links — hidden on mobile */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-blue-200">
             <a href="#services" className="hover:text-white transition-colors">Services</a>
+            <a href="#maintenance" className="hover:text-white transition-colors">Maintenance Plans</a>
             <a href="#why-us" className="hover:text-white transition-colors">About</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </nav>
@@ -116,15 +141,6 @@ export default function HomePage() {
           <p className="text-blue-200 text-xl font-light mb-10 max-w-lg leading-relaxed">
             New installations, spring repairs, and same-day service for homeowners in Calgary and area.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="/booking"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
-              style={{ background: ORANGE }}
-            >
-              📅 Book an Appointment
-            </a>
-          </div>
         </div>
       </section>
 
@@ -226,40 +242,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── PROMO ─── */}
-      <section className="py-16" style={{ background: NAVY }}>
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>
-            Limited-Time Offer · May &amp; June 2026
+      {/* ─── COMMERCIAL MAINTENANCE ─── */}
+      <section id="maintenance" className="py-20" style={{ background: NAVY }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-bold text-[10px] tracking-[4px] uppercase text-center mb-3" style={{ color: ORANGE }}>
+            New · Commercial Services
           </p>
-          <h2 className="font-black text-4xl text-white mb-2">Spring Tune-Up Special</h2>
-          <p className="text-blue-300 text-sm mb-8">
-            We recently completed a job in your neighbourhood — exclusive rate for nearby homeowners.
+          <h2 className="text-4xl font-black text-center text-white mb-4">Commercial Maintenance Reporting</h2>
+          <p className="text-center text-blue-300 max-w-2xl mx-auto mb-12">
+            A scheduled maintenance program for warehouses, dock equipment, and multi-location facilities — with a clear, documented report after every visit.
           </p>
 
-          <div className="inline-flex items-baseline gap-3 mb-2">
-            <span className="font-black text-6xl" style={{ color: ORANGE }}>$89</span>
-            <span className="text-blue-300 text-lg line-through">$149</span>
-          </div>
-          <p className="text-blue-400 text-xs mb-8">Save $60 · Book before June 30, 2026</p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-8 text-left">
-            {TUNE_UP_INCLUDES.map((item) => (
-              <div key={item} className="flex items-start gap-2">
-                <div className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
-                <span className="text-xs text-blue-200 font-medium">{item}</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {MAINTENANCE_FEATURES.map((f) => (
+              <div key={f.title} className="text-center">
+                <div className="text-4xl mb-4">{f.icon}</div>
+                <h3 className="font-black text-lg text-white mb-2">{f.title}</h3>
+                <p className="text-blue-300 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
 
-          <a
-            href="/booking?deal=tune-up"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
-            style={{ background: ORANGE }}
-          >
-            📅 Book Online — Claim This Deal
-          </a>
-          <p className="text-blue-500 text-xs mt-4">Select &ldquo;Repair&rdquo; and mention the tune-up special in your notes. One per household.</p>
+          <div className="text-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
+              style={{ background: ORANGE }}
+            >
+              📋 Ask About Maintenance Plans
+            </a>
+          </div>
         </div>
       </section>
 
