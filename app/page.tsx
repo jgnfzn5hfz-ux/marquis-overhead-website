@@ -135,7 +135,7 @@ export default function HomePage() {
             Calgary &amp; Area — Residential &amp; Commercial
           </p>
           <h1 className="font-black text-white text-5xl sm:text-6xl leading-[1.05] mb-5 tracking-tight max-w-2xl">
-            Garage Doors &amp;<br />Overhead Doors<br />
+            Garage Doors &amp;<br />Dock Equipment<br />
             <span style={{ color: ORANGE }}>Done Right.</span>
           </h1>
           <p className="text-blue-200 text-xl font-light mb-10 max-w-lg leading-relaxed">
