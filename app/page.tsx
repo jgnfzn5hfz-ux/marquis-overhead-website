@@ -114,12 +114,15 @@ export default function HomePage() {
           {/* CTA */}
           <a
             href="tel:+14036179797"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90"
+            className="flex-shrink-0 inline-flex flex-col items-center px-5 py-2 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90"
             style={{ background: ORANGE }}
           >
-            <span>📞</span>
-            <span className="hidden sm:inline">(403) 617-9797</span>
-            <span className="sm:hidden">Call</span>
+            <span className="flex items-center gap-2">
+              <span>📞</span>
+              <span className="hidden sm:inline">(403) 617-9797</span>
+              <span className="sm:hidden">Call / Text</span>
+            </span>
+            <span className="hidden sm:block text-[10px] font-medium opacity-90 tracking-wide">Call or Text</span>
           </a>
         </div>
         <div className="h-[3px]" style={{ background: ORANGE }} />
