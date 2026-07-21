@@ -1,77 +1,88 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
-const NAVY = "#0D1F35";
-const ORANGE = "#F07A20";
+const NAVY = "#04172F";
+const ORANGE = "#F74901";
 
 const SERVICES = [
   {
-    title: "New Door Installation",
-    desc: "Steel, insulated sectional, and custom garage doors for homes and acreages. Same-day quotes, professional installation.",
+    title: "Commercial Overhead Doors",
+    desc: "Steel sectional, rolling steel, high-speed, and fire doors for warehouses, distribution centres, and commercial buildings.",
   },
   {
-    title: "Repairs & Spring Service",
-    desc: "Broken spring? Snapped cable? Stuck door? We carry common parts on the truck and get you moving again fast.",
+    title: "Operators & Controls",
+    desc: "Commercial-grade operators, photo eyes, edge devices, activation controls, and full safety sensor setup and certification.",
   },
   {
-    title: "Operators & Smart Home",
-    desc: "LiftMaster and Chamberlain operators, myQ smart connectivity, battery backup, and full safety sensor setup.",
+    title: "Dock Equipment",
+    desc: "Dock levelers, seals, vehicle restraints, and bumpers — supply, installation, and service for busy loading dock operations.",
   },
   {
-    title: "Commercial & Dock",
-    desc: "Rolling steel doors, dock levelers, seals, and vehicle restraints for warehouses and industrial facilities.",
+    title: "Preventative Maintenance",
+    desc: "Scheduled PM programs with detailed end-of-day reports, flagged repairs, on-site quoting, and organized equipment history.",
   },
 ];
 
-const MAINTENANCE_FEATURES = [
+const PM_STEPS = [
   {
-    icon: "📋",
-    title: "Door-by-Door Inspection",
-    desc: "Every overhead door, dock leveler, and seal at your facility is checked and logged at each visit.",
+    num: "1",
+    title: "Number & Identify",
+    desc: "Each door and dock is numbered, categorized, and recorded by type and size.",
   },
   {
-    icon: "📸",
-    title: "Photo Documentation",
-    desc: "Visual record of wear, damage, and completed repairs — attached to every report.",
+    num: "2",
+    title: "Inspect & Service",
+    desc: "Equipment is inspected, tested, adjusted, and maintained by experienced technicians.",
   },
   {
-    icon: "⚠️",
-    title: "Priority Findings",
-    desc: "Issues flagged by urgency, with clear recommendations and quotes for any repairs needed.",
+    num: "3",
+    title: "Daily Reports",
+    desc: "Detailed end-of-day reports outline findings, completed adjustments, and concerns identified.",
   },
   {
-    icon: "✅",
-    title: "Safety & Compliance Checks",
-    desc: "Sensor tests, restraint checks, and operator inspections — documented for your records.",
+    num: "4",
+    title: "Flag Repairs",
+    desc: "Further repairs are clearly flagged so nothing gets missed.",
   },
   {
-    icon: "🗂️",
-    title: "Digital Maintenance History",
-    desc: "Every report archived and accessible, so you can track the condition of each door over time.",
+    num: "5",
+    title: "Quote On Site",
+    desc: "Quotes are generated on site where applicable for faster decision-making.",
   },
-  {
-    icon: "📅",
-    title: "Scheduled Visit Summary",
-    desc: "A clear summary of what was done at each visit and when the next one is due.",
-  },
+];
+
+const WHAT_SETS_US_APART = [
+  "Numbered and categorized equipment",
+  "Detailed inspection findings",
+  "Record of adjustments completed",
+  "Repair items clearly flagged",
+  "On-site quoting where applicable",
+  "End-of-day reporting",
+  "Organized equipment history",
 ];
 
 const TRUST_POINTS = [
   {
-    icon: "⚡",
-    title: "Same-Day Service",
-    desc: "Broken spring or stuck door doesn't wait — neither do we. Fast dispatch across Calgary and the surrounding area.",
+    title: "50+ Years Combined Experience",
+    desc: "Our team brings over 50 years of hands-on industry experience to every job — residential, commercial, and industrial.",
   },
   {
-    icon: "🏠",
-    title: "Residential Specialists",
-    desc: "From single-car garages to acreages and new builds — we know residential doors inside and out.",
+    title: "In-House Reporting Platform",
+    desc: "We document, track, and communicate — so you stay informed and in control. Clear reporting between Marquis and your team is a top priority.",
   },
   {
-    icon: "🤝",
-    title: "You're Always in the Loop",
-    desc: "We keep you informed from first call to final install. No surprises on timing, pricing, or scope — just clear communication and a job done right.",
+    title: "24/7 Emergency Service",
+    desc: "A stuck door doesn't wait for business hours. We're available around the clock for emergency repairs across Calgary and area.",
   },
+];
+
+const FOOTER_SERVICES = [
+  "Commercial Overhead Doors",
+  "Operators & Controls",
+  "Dock Equipment",
+  "Preventative Maintenance",
+  "Spring Replacement",
+  "24/7 Emergency Service",
 ];
 
 export default function HomePage() {
@@ -84,23 +95,18 @@ export default function HomePage() {
       >
         <div className="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="28" height="35" aria-hidden="true">
-              <polyline points="14,18 40,46 66,18" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" opacity="0.30"/>
-              <polyline points="14,30 40,58 66,30" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="14" y1="30" x2="14" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
-              <line x1="66" y1="30" x2="66" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
-            </svg>
-            <div>
-              <div className="font-black text-white text-lg leading-none tracking-[3px]">MARQUIS</div>
-              <div className="font-bold text-[7px] tracking-[5px] uppercase" style={{ color: ORANGE }}>OVERHEAD</div>
-            </div>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/marquis/logo-full-white.svg"
+            alt="Marquis Overhead"
+            height={44}
+            style={{ height: 44, width: "auto" }}
+          />
 
           {/* Nav links — hidden on mobile */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-blue-200">
             <a href="#services" className="hover:text-white transition-colors">Services</a>
-            <a href="#maintenance" className="hover:text-white transition-colors">Maintenance Plans</a>
+            <a href="#maintenance" className="hover:text-white transition-colors">Maintenance</a>
             <a href="#why-us" className="hover:text-white transition-colors">About</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </nav>
@@ -112,7 +118,8 @@ export default function HomePage() {
             style={{ background: ORANGE }}
           >
             <span>📞</span>
-            <span>(403) 617-9797</span>
+            <span className="hidden sm:inline">(403) 617-9797</span>
+            <span className="sm:hidden">Call</span>
           </a>
         </div>
         <div className="h-[3px]" style={{ background: ORANGE }} />
@@ -121,44 +128,186 @@ export default function HomePage() {
       {/* ─── HERO ─── */}
       <section className="relative min-h-[92vh] flex items-center">
         <Image
-          src="/images/hero-home.jpg"
-          alt="Modern home with overhead garage doors"
+          src="/images/commercial-doors.jpg"
+          alt="Commercial overhead doors and dock equipment"
           fill
           className="object-cover object-center"
           priority
         />
-        {/* Overlay */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(13,31,53,0.82) 0%, rgba(13,31,53,0.60) 60%, rgba(13,31,53,0.30) 100%)" }} />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, rgba(4,23,47,0.88) 0%, rgba(4,23,47,0.72) 55%, rgba(4,23,47,0.35) 100%)" }}
+        />
 
         <div className="relative max-w-6xl mx-auto px-6 py-24">
           <p className="font-bold text-[11px] tracking-[5px] uppercase mb-4" style={{ color: ORANGE }}>
-            Calgary &amp; Area — Residential &amp; Commercial
+            Calgary &amp; Area
           </p>
-          <h1 className="font-black text-white text-5xl sm:text-6xl leading-[1.05] mb-5 tracking-tight max-w-2xl">
-            Garage Doors &amp;<br />Dock Equipment<br />
-            <span style={{ color: ORANGE }}>Done Right.</span>
+          <h1 className="font-black text-white text-5xl sm:text-6xl leading-[1.05] mb-5 tracking-tight max-w-2xl uppercase">
+            Commercial<br />Door &amp; Dock<br />
+            <span style={{ color: ORANGE }}>Specialists.</span>
           </h1>
-          <p className="text-blue-200 text-xl font-light mb-10 max-w-lg leading-relaxed">
-            New installations, spring repairs, and same-day service for homeowners in Calgary and area.
+          <p className="text-blue-200 text-lg font-light mb-4 max-w-md leading-relaxed">
+            Built on 50+ years of combined industry experience.
           </p>
+          <p className="text-blue-300 text-sm mb-10 max-w-md">
+            Overhead Door Installation · Operators &amp; Controls · Dock Equipment · Preventative Maintenance
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-base transition-opacity hover:opacity-90"
+              style={{ background: ORANGE }}
+            >
+              Schedule a Facility Review
+            </a>
+            <a
+              href="tel:+14036179797"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-base border-2 border-white/30 text-white hover:bg-white/10 transition-colors"
+            >
+              (403) 617-9797
+            </a>
+          </div>
         </div>
       </section>
+
+      {/* ─── SERVICE STRIP ─── */}
+      <div className="py-5" style={{ background: "#0B1E35" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 text-sm font-bold tracking-wide text-white/80">
+            {["Commercial Overhead Doors", "Operators & Controls", "Dock Equipment", "Preventative Maintenance", "24/7 Emergency Service"].map((s, i) => (
+              <span key={s} className="flex items-center gap-2">
+                {i > 0 && <span className="hidden sm:inline" style={{ color: ORANGE }}>·</span>}
+                <span>{s}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* ─── SERVICES ─── */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>What We Do</p>
-          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Our Services</h2>
-          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">From broken springs to brand-new doors — fast, reliable service for homeowners and businesses across Alberta.</p>
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>
+            What We Do
+          </p>
+          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>
+            Our Services
+          </h2>
+          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">
+            Reliable service for warehouses, distribution centres, and commercial facilities across Alberta.
+          </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICES.map((s) => (
-              <div key={s.title} className="p-6 rounded-xl border-2 border-gray-100 hover:border-orange-300 hover:shadow-lg transition-all group">
-                <div className="w-3 h-3 rounded-full mb-4 transition-transform group-hover:scale-125" style={{ background: ORANGE }} />
+              <div
+                key={s.title}
+                className="p-6 rounded-xl border-2 border-gray-100 hover:border-orange-300 hover:shadow-lg transition-all group"
+              >
+                <div
+                  className="w-3 h-3 rounded-full mb-4 transition-transform group-hover:scale-125"
+                  style={{ background: ORANGE }}
+                />
                 <h3 className="font-black text-base mb-2" style={{ color: NAVY }}>{s.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PREVENTATIVE MAINTENANCE ─── */}
+      <section id="maintenance" className="py-20" style={{ background: NAVY }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>
+            Scheduled Service
+          </p>
+          <h2 className="text-4xl font-black text-center text-white mb-2">Preventative Maintenance</h2>
+          <p className="text-center font-bold tracking-wide text-white mb-2 text-sm">
+            BETTER REPORTING. BETTER COMMUNICATION. BETTER CONTROL.
+          </p>
+          <p className="text-center text-blue-300 max-w-2xl mx-auto mb-14">
+            Keep your facility running with organized preventative maintenance, clear reporting, and fast follow-up on repair needs.
+          </p>
+
+          {/* 5-step process */}
+          <div className="grid sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-14">
+            {PM_STEPS.map((step) => (
+              <div key={step.num} className="text-center">
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-4"
+                  style={{ background: ORANGE }}
+                >
+                  {step.num}
+                </div>
+                <h3 className="font-black text-white text-sm mb-2 uppercase tracking-wide">{step.title}</h3>
+                <p className="text-blue-300 text-xs leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* What sets us apart + CTA */}
+          <div className="grid sm:grid-cols-2 gap-10 items-center">
+            <div
+              className="rounded-xl p-8"
+              style={{ background: "rgba(255,255,255,0.06)", border: `1px solid rgba(247,73,1,0.3)` }}
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg"
+                  style={{ background: ORANGE }}
+                >
+                  ★
+                </div>
+                <h3 className="font-black text-white text-xl">What Sets Us Apart</h3>
+              </div>
+              <ul className="space-y-3">
+                {WHAT_SETS_US_APART.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-blue-100">
+                    <span
+                      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-white text-[10px] font-black"
+                      style={{ background: ORANGE }}
+                    >
+                      ✓
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>
+                Powered by Our In-House Platform
+              </p>
+              <h3 className="font-black text-2xl text-white mb-4">
+                Schedule a Facility Review
+              </h3>
+              <p className="text-blue-300 text-sm leading-relaxed mb-6">
+                We document, track, and communicate — so you stay informed and in control. Clear communication between Marquis and your team is a top priority.
+              </p>
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3 text-white font-bold">
+                  <span style={{ color: ORANGE }}>📞</span>
+                  <a href="tel:+14036179797" className="hover:underline">(403) 617-9797</a>
+                </div>
+                <div className="flex items-center gap-3 text-white font-bold">
+                  <span style={{ color: ORANGE }}>🌐</span>
+                  <span>marquisoverhead.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-white font-bold">
+                  <span style={{ color: ORANGE }}>📍</span>
+                  <span>Calgary &amp; Area</span>
+                </div>
+              </div>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-base transition-opacity hover:opacity-90"
+                style={{ background: ORANGE }}
+              >
+                Ask About PM Programs
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -170,27 +319,31 @@ export default function HomePage() {
             <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
               <Image
                 src="/images/residential-doors.jpg"
-                alt="Residential overhead door installation"
+                alt="Overhead door installation"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
-                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>Residential</span>
-                <span className="block font-black text-xl text-white">Sectional Doors</span>
+                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>
+                  Installation
+                </span>
+                <span className="block font-black text-xl text-white">Overhead Doors</span>
               </div>
             </div>
             <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
               <Image
                 src="/images/commercial-doors.jpg"
-                alt="Commercial overhead door installation"
+                alt="Commercial dock and door equipment"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
-                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>Commercial</span>
-                <span className="block font-black text-xl text-white">Industrial Doors</span>
+                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>
+                  Commercial
+                </span>
+                <span className="block font-black text-xl text-white">Dock Equipment</span>
               </div>
             </div>
           </div>
@@ -200,76 +353,49 @@ export default function HomePage() {
       {/* ─── WHY MARQUIS ─── */}
       <section id="why-us" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>Why Choose Us</p>
-          <h2 className="text-4xl font-black text-center mb-12" style={{ color: NAVY }}>The Marquis Difference</h2>
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>
+            Why Choose Us
+          </p>
+          <h2 className="text-4xl font-black text-center mb-12" style={{ color: NAVY }}>
+            The Marquis Difference
+          </h2>
 
           <div className="grid sm:grid-cols-3 gap-8 mb-16">
             {TRUST_POINTS.map((t) => (
-              <div key={t.title} className="text-center">
-                <div className="text-4xl mb-4">{t.icon}</div>
-                <h3 className="font-black text-lg mb-2" style={{ color: NAVY }}>{t.title}</h3>
+              <div key={t.title} className="text-center p-6">
+                <div
+                  className="w-12 h-1 mx-auto mb-5 rounded"
+                  style={{ background: ORANGE }}
+                />
+                <h3 className="font-black text-lg mb-3" style={{ color: NAVY }}>{t.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
               </div>
             ))}
           </div>
 
-          {/* Door construction callout */}
-          <div className="rounded-2xl overflow-hidden grid sm:grid-cols-2 shadow-sm border border-gray-100">
-            <div className="relative h-72 sm:h-auto">
-              <Image
-                src="/images/door-construction.jpg"
-                alt="Insulated door panel cross-section"
-                fill
-                className="object-contain bg-white p-4"
-              />
-            </div>
-            <div className="p-8 flex flex-col justify-center" style={{ background: NAVY }}>
-              <p className="font-bold text-[10px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>Quality You Can See</p>
-              <h3 className="font-black text-2xl text-white mb-4">Insulated Steel Construction</h3>
-              <p className="text-blue-200 text-sm leading-relaxed mb-5">
-                We install polyurethane foam-injected steel sectional doors — better insulation, quieter operation, and built to last Alberta winters. The same product used in fire halls and warehouses, now in your garage.
-              </p>
-              <ul className="space-y-2">
-                {["High R-value insulation", "Quieter, smoother operation", "Heavy-duty galvanized tracks", "Weatherseal on all four sides"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-blue-100">
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── COMMERCIAL MAINTENANCE ─── */}
-      <section id="maintenance" className="py-20" style={{ background: NAVY }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="font-bold text-[10px] tracking-[4px] uppercase text-center mb-3" style={{ color: ORANGE }}>
-            New · Commercial Services
-          </p>
-          <h2 className="text-4xl font-black text-center text-white mb-4">Commercial Maintenance Reporting</h2>
-          <p className="text-center text-blue-300 max-w-2xl mx-auto mb-12">
-            A scheduled maintenance program for warehouses, dock equipment, and multi-location facilities — with a clear, documented report after every visit.
-          </p>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {MAINTENANCE_FEATURES.map((f) => (
-              <div key={f.title} className="text-center">
-                <div className="text-4xl mb-4">{f.icon}</div>
-                <h3 className="font-black text-lg text-white mb-2">{f.title}</h3>
-                <p className="text-blue-300 text-sm leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
+          {/* New company, proven experience callout */}
+          <div
+            className="rounded-2xl p-8 sm:p-12 text-center"
+            style={{ background: NAVY }}
+          >
+            <p
+              className="font-bold text-[11px] tracking-[5px] uppercase mb-4"
+              style={{ color: ORANGE }}
+            >
+              New Company. Proven Experience.
+            </p>
+            <h3 className="font-black text-3xl sm:text-4xl text-white mb-4">
+              Built on 50+ Years of Combined Industry Experience.
+            </h3>
+            <p className="text-blue-300 max-w-xl mx-auto mb-8">
+              Marquis Overhead was founded by industry veterans who have spent decades in the field. We bring that experience to every facility we service.
+            </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-lg transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-base transition-opacity hover:opacity-90"
               style={{ background: ORANGE }}
             >
-              📋 Ask About Maintenance Plans
+              Get a Free Quote
             </a>
           </div>
         </div>
@@ -278,10 +404,14 @@ export default function HomePage() {
       {/* ─── CONTACT ─── */}
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6">
-          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>Get In Touch</p>
-          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>Request a Free Quote</h2>
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>
+            Get In Touch
+          </p>
+          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>
+            Request a Free Quote
+          </h2>
           <p className="text-center text-gray-500 mb-10">
-            Tell us what you need — we&apos;ll get back to you within one business day. For same-day service, book online and we&apos;ll reach out to confirm.
+            Tell us what you need — we&apos;ll get back to you within one business day. For same-day service, call us directly at <a href="tel:+14036179797" className="font-bold" style={{ color: ORANGE }}>(403) 617-9797</a>.
           </p>
           <ContactForm />
         </div>
@@ -293,20 +423,14 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-6 grid sm:grid-cols-3 gap-8">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="28" height="35" aria-hidden="true">
-                  <polyline points="14,18 40,46 66,18" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" opacity="0.30"/>
-                  <polyline points="14,30 40,58 66,30" fill="none" stroke={ORANGE} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="14" y1="30" x2="14" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
-                  <line x1="66" y1="30" x2="66" y2="90" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round"/>
-                </svg>
-                <div>
-                  <div className="font-black text-white text-lg leading-none tracking-[3px]">MARQUIS</div>
-                  <div className="font-bold text-[7px] tracking-[5px] uppercase" style={{ color: ORANGE }}>OVERHEAD</div>
-                </div>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/marquis/logo-full-white.svg"
+                alt="Marquis Overhead"
+                style={{ height: 56, width: "auto", marginBottom: "1rem" }}
+              />
               <p className="text-blue-300 text-sm leading-relaxed">
-                Garage door installation, repairs, and service for homeowners and businesses across Alberta.
+                Commercial overhead door installation, repairs, dock equipment, and preventative maintenance programs for businesses across Alberta.
               </p>
             </div>
 
@@ -314,11 +438,9 @@ export default function HomePage() {
             <div>
               <h4 className="font-black text-white text-sm tracking-wider uppercase mb-4">Services</h4>
               <ul className="space-y-2 text-sm text-blue-300">
-                <li>Overhead Door Installation</li>
-                <li>Repairs &amp; Service</li>
-                <li>Dock Equipment</li>
-                <li>Operators &amp; Controls</li>
-                <li>Spring Replacement</li>
+                {FOOTER_SERVICES.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
               </ul>
             </div>
 
@@ -326,23 +448,33 @@ export default function HomePage() {
             <div>
               <h4 className="font-black text-white text-sm tracking-wider uppercase mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-blue-300">
-                <li><a href="tel:+14036179797" className="hover:text-white transition-colors">📞 (403) 617-9797</a></li>
-                <li><a href="mailto:contact@marquisoverhead.com" className="hover:text-white transition-colors">✉ contact@marquisoverhead.com</a></li>
+                <li>
+                  <a href="tel:+14036179797" className="hover:text-white transition-colors">
+                    📞 (403) 617-9797
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:contact@marquisoverhead.com" className="hover:text-white transition-colors">
+                    ✉ contact@marquisoverhead.com
+                  </a>
+                </li>
                 <li className="pt-1 text-blue-400">Calgary &amp; Area, Alberta</li>
-                <li className="text-blue-400">Residential &amp; Commercial</li>
+                <li className="text-blue-400">marquisoverhead.com</li>
               </ul>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div style={{ background: ORANGE }} className="px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-1 max-w-full">
-          <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: NAVY }}>
-            Overhead Doors · Repairs · Installations
-          </span>
-          <span className="text-[11px] font-bold" style={{ color: NAVY }}>
-            © {new Date().getFullYear()} Marquis Overhead
-          </span>
+        <div style={{ background: ORANGE }} className="px-6 py-3">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
+            <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: NAVY }}>
+              Overhead Doors · Repairs · Installations
+            </span>
+            <span className="text-[11px] font-bold" style={{ color: NAVY }}>
+              © {new Date().getFullYear()} Marquis Overhead
+            </span>
+          </div>
         </div>
       </footer>
     </>

@@ -3,8 +3,8 @@
 import { useActionState, useEffect } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 
-const NAVY = "#0D1F35";
-const ORANGE = "#F07A20";
+const NAVY = "#04172F";
+const ORANGE = "#F74901";
 
 const initial: ContactState = { status: "idle" };
 
