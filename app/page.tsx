@@ -128,15 +128,15 @@ export default function HomePage() {
       {/* ─── HERO ─── */}
       <section className="relative min-h-[92vh] flex items-center">
         <Image
-          src="/images/riley-action.jpg"
-          alt="Marquis Overhead technician servicing a commercial overhead door"
+          src="/images/dock-hero.jpg"
+          alt="Commercial loading dock with Calgary skyline"
           fill
-          className="object-cover object-[center_30%]"
+          className="object-cover object-center"
           priority
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(4,23,47,0.90) 0%, rgba(4,23,47,0.75) 50%, rgba(4,23,47,0.40) 100%)" }}
+          style={{ background: "linear-gradient(135deg, rgba(4,23,47,0.88) 0%, rgba(4,23,47,0.70) 50%, rgba(4,23,47,0.35) 100%)" }}
         />
 
         <div className="relative max-w-6xl mx-auto px-6 py-24">
@@ -312,40 +312,38 @@ export default function HomePage() {
         </div>
       </section>
 
+
       {/* ─── PHOTO SHOWCASE ─── */}
-      <section className="py-2 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
-              <Image
-                src="/images/riley-action.jpg"
-                alt="Marquis Overhead technician on the job"
-                fill
-                className="object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>
-                  Our Technicians
-                </span>
-                <span className="block font-black text-xl text-white">Hands-On Service</span>
-              </div>
-            </div>
-            <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden group">
-              <Image
-                src="/images/commercial-doors.jpg"
-                alt="Commercial overhead door installation"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <span className="block text-[10px] font-bold tracking-[3px] uppercase mb-1" style={{ color: ORANGE }}>
-                  Commercial
-                </span>
-                <span className="block font-black text-xl text-white">Overhead Doors</span>
-              </div>
-            </div>
+      <section className="relative h-[500px] sm:h-[600px]">
+        <Image
+          src="/images/dock-feature.jpg"
+          alt="Commercial overhead door with Calgary Tower in background at sunset"
+          fill
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, rgba(4,23,47,0.85) 0%, rgba(4,23,47,0.40) 60%, rgba(4,23,47,0.10) 100%)" }}
+        />
+        <div className="relative h-full flex items-center">
+          <div className="max-w-6xl mx-auto px-6 w-full">
+            <p className="font-bold text-[11px] tracking-[5px] uppercase mb-4" style={{ color: ORANGE }}>
+              Commercial Specialists
+            </p>
+            <h2 className="font-black text-white text-4xl sm:text-5xl leading-tight mb-5 max-w-lg">
+              Every Door.<br />Every Dock.<br />
+              <span style={{ color: ORANGE }}>Done Right.</span>
+            </h2>
+            <p className="text-blue-200 max-w-sm leading-relaxed mb-8">
+              From a single spring replacement to a full loading dock retrofit — Marquis Overhead brings the experience and equipment to handle it.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-base transition-opacity hover:opacity-90"
+              style={{ background: ORANGE }}
+            >
+              Get a Free Quote
+            </a>
           </div>
         </div>
       </section>
@@ -397,48 +395,6 @@ export default function HomePage() {
             >
               Get a Free Quote
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TEAM / BRAND ─── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 gap-12 items-center">
-            <div className="relative h-[520px] rounded-2xl overflow-hidden shadow-xl">
-              <Image
-                src="/images/riley-profile.jpg"
-                alt="Riley Mason — Marquis Overhead brand ambassador"
-                fill
-                className="object-cover object-top"
-              />
-            </div>
-            <div>
-              <p className="font-bold text-[11px] tracking-[4px] uppercase mb-3" style={{ color: ORANGE }}>
-                Our Team
-              </p>
-              <h2 className="text-4xl font-black mb-4" style={{ color: NAVY }}>
-                Real Work.<br />Real People.
-              </h2>
-              <p className="text-gray-500 leading-relaxed mb-6">
-                Marquis Overhead is built by people who know the trade. Our technicians bring hands-on experience, branded professionalism, and a work ethic that shows up on every job site — from a single door repair to a full facility PM program.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {["Tools. Service. Workwear.", "Calgary & Area locals", "Commercial door & dock specialists", "Detailed, documented work on every visit"].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm font-medium" style={{ color: NAVY }}>
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ORANGE }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-white font-bold text-base transition-opacity hover:opacity-90"
-                style={{ background: ORANGE }}
-              >
-                Get In Touch
-              </a>
-            </div>
           </div>
         </div>
       </section>
