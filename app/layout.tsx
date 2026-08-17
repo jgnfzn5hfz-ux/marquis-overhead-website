@@ -21,9 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full scroll-smooth">
       <head>
-        {/* Google Analytics — G-YD7GMTDRPD */}
+        {/* Google Analytics — G-BVV7M57HC9 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YD7GMTDRPD"
+          src="https://www.googletagmanager.com/gtag/js?id=G-BVV7M57HC9"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-YD7GMTDRPD');
+            gtag('config', 'G-BVV7M57HC9');
           `}
         </Script>
       </head>
