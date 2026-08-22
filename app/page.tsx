@@ -142,6 +142,15 @@ const TRUST_POINTS = [
   },
 ];
 
+const TESTIMONIALS = [
+  {
+    quote:
+      "Aaron was great to work with, pricing was upfront and there were no hidden charges. Communication was excellent and we were very happy with the finished product.",
+    name: "Ryan Buckler",
+    detail: "Recommended on Facebook · Aug 2026",
+  },
+];
+
 const FOOTER_SERVICES = [
   "Commercial Overhead Doors",
   "Residential Garage Doors",
@@ -176,6 +185,7 @@ export default function HomePage() {
             <a href="#residential" className="hover:text-white transition-colors">Residential</a>
             <a href="#maintenance" className="hover:text-white transition-colors">Maintenance</a>
             <a href="#why-us" className="hover:text-white transition-colors">About</a>
+            <a href="#reviews" className="hover:text-white transition-colors">Reviews</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </nav>
 
@@ -583,6 +593,43 @@ export default function HomePage() {
             >
               Get a Free Quote
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ─── */}
+      <section id="reviews" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-bold text-[11px] tracking-[4px] uppercase text-center mb-2" style={{ color: ORANGE }}>
+            What Our Customers Say
+          </p>
+          <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>
+            Reviews
+          </h2>
+          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">
+            Real feedback from Calgary-area homeowners and businesses we&apos;ve worked with.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {TESTIMONIALS.map((t) => (
+              <figure
+                key={t.name}
+                className="p-8 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-300 hover:shadow-lg transition-all flex flex-col"
+              >
+                <div className="flex gap-1 mb-4 text-lg" style={{ color: ORANGE }} aria-label="5 out of 5 stars">
+                  {"★★★★★".split("").map((s, i) => (
+                    <span key={i}>{s}</span>
+                  ))}
+                </div>
+                <blockquote className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption>
+                  <p className="font-black text-base" style={{ color: NAVY }}>{t.name}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{t.detail}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
