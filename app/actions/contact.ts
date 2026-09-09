@@ -70,17 +70,21 @@ export async function submitContact(
     // Non-fatal — continue to email
   }
 
-  // Send email notification via Resend
+  // Send email notification via Resend.
+  // Never fake success: if we can't email the lead, tell the customer to call
+  // so the lead is never silently dropped.
   if (!process.env.RESEND_API_KEY) {
-    console.log("Contact form submission (no Resend key):", { name, phone, email, message });
-    return { status: "success" };
+    console.error("Contact form: RESEND_API_KEY is not set — cannot email the lead:", { name, phone, email, message });
+    return { status: "error", message: "Something went wrong on our end. Please call us at (403) 617-9797." };
   }
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "Website <noreply@marquisoverhead.com>",
-      to: "contact@marquisoverhead.com",
+    // Resend returns errors in `error` WITHOUT throwing (e.g. unverified domain,
+    // bad key), so we must check it — otherwise failures look like success.
+    const { error } = await resend.emails.send({
+      from: "Marquis Overhead Website <noreply@marquisoverhead.com>",
+      to: ["contact@marquisoverhead.com", "aaron@marquisoverhead.com"],
       replyTo: email || undefined,
       subject: `New Website Inquiry — ${name}`,
       text: [
@@ -91,9 +95,13 @@ export async function submitContact(
         message,
         "",
         "─────────────────────────",
-        "This inquiry has been added to your SiteCompass dashboard.",
+        "Sent from the marquisoverhead.com contact form.",
       ].join("\n"),
     });
+    if (error) {
+      console.error("Resend send error:", error);
+      return { status: "error", message: "Something went wrong. Please call us at (403) 617-9797." };
+    }
     return { status: "success" };
   } catch (err) {
     console.error("Resend error:", err);
