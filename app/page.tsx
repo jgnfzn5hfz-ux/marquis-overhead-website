@@ -692,7 +692,7 @@ export default function HomePage() {
             Get In Touch
           </p>
           <h2 className="text-4xl font-black text-center mb-3" style={{ color: NAVY }}>
-            Request a Free Quote
+            Request Service or a Quote
           </h2>
           <p className="text-center text-gray-500 mb-10">
             Tell us what you need — we&apos;ll get back to you within one business day. For same-day service, call us directly at <a href="tel:+14036179797" className="font-bold" style={{ color: ORANGE }}>(403) 617-9797</a>.
