@@ -1,6 +1,6 @@
 "use server";
 
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 const SITECOMPASS_URL = process.env.NEXT_PUBLIC_SITECOMPASS_URL ?? "http://localhost:3000";
 
@@ -70,20 +70,26 @@ export async function submitContact(
     // Non-fatal — continue to email
   }
 
-  // Send email notification via Resend.
+  // Send email notification via Gmail (nodemailer) — the same proven setup
+  // SiteCompass uses for invoices and estimates.
   // Never fake success: if we can't email the lead, tell the customer to call
   // so the lead is never silently dropped.
-  if (!process.env.RESEND_API_KEY) {
-    console.error("Contact form: RESEND_API_KEY is not set — cannot email the lead:", { name, phone, email, message });
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+  if (!gmailUser || !gmailPass) {
+    console.error("Contact form: GMAIL_USER / GMAIL_APP_PASSWORD not set — cannot email the lead:", { name, phone, email, message });
     return { status: "error", message: "Something went wrong on our end. Please call us at (403) 617-9797." };
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    // Resend returns errors in `error` WITHOUT throwing (e.g. unverified domain,
-    // bad key), so we must check it — otherwise failures look like success.
-    const { error } = await resend.emails.send({
-      from: "Marquis Overhead Website <noreply@marquisoverhead.com>",
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: gmailUser, pass: gmailPass },
+    });
+    // Gmail rewrites the From to the authenticated mailbox, so send as that
+    // mailbox to keep From and envelope aligned.
+    await transporter.sendMail({
+      from: `"Marquis Overhead Website" <${gmailUser}>`,
       to: ["contact@marquisoverhead.com", "aaron@marquisoverhead.com"],
       replyTo: email || undefined,
       subject: `New Website Inquiry — ${name}`,
@@ -98,13 +104,9 @@ export async function submitContact(
         "Sent from the marquisoverhead.com contact form.",
       ].join("\n"),
     });
-    if (error) {
-      console.error("Resend send error:", error);
-      return { status: "error", message: "Something went wrong. Please call us at (403) 617-9797." };
-    }
     return { status: "success" };
   } catch (err) {
-    console.error("Resend error:", err);
+    console.error("Gmail send error:", err);
     return { status: "error", message: "Something went wrong. Please call us at (403) 617-9797." };
   }
 }
