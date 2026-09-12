@@ -8,7 +8,7 @@ const ORANGE = "#F74901";
 
 const initial: ContactState = { status: "idle" };
 
-export default function ContactForm() {
+export default function ContactForm({ source }: { source?: string } = {}) {
   const [state, action, pending] = useActionState(submitContact, initial);
 
   // Load Cloudflare Turnstile script (implicit mode — auto-renders widget in .cf-turnstile divs)
@@ -33,6 +33,7 @@ export default function ContactForm() {
 
   return (
     <form action={action} className="space-y-5">
+      {source && <input type="hidden" name="source" value={source} />}
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>

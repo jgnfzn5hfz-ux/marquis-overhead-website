@@ -33,6 +33,7 @@ export async function submitContact(
   const phone = formData.get("phone")?.toString().trim() ?? "";
   const email = formData.get("email")?.toString().trim() ?? "";
   const message = formData.get("message")?.toString().trim() ?? "";
+  const source = formData.get("source")?.toString().trim() ?? "";
   const turnstileToken = formData.get("cf-turnstile-response")?.toString() ?? "";
 
   if (!name || !phone || !message) {
@@ -92,11 +93,12 @@ export async function submitContact(
       from: `"Marquis Overhead Website" <${gmailUser}>`,
       to: ["contact@marquisoverhead.com", "aaron@marquisoverhead.com"],
       replyTo: email || undefined,
-      subject: `New Website Inquiry — ${name}`,
+      subject: source ? `New Lead (${source}) — ${name}` : `New Website Inquiry — ${name}`,
       text: [
         `Name:    ${name}`,
         `Phone:   ${phone}`,
         `Email:   ${email || "not provided"}`,
+        `Source:  ${source || "Website contact form"}`,
         "",
         message,
         "",
